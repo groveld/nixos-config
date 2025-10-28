@@ -1,0 +1,6 @@
+/hardware-configuration.nix
+/configuration.nix
+result
+result-*
+.direnv
+.envrc
