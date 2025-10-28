@@ -4,11 +4,8 @@
 
     stylix = {
       enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
       image = "../wallpapers/owl.jpg";
       polarity = "dark";
-
-      targets = { };
 
       opacity = {
         terminal = 0.95;
