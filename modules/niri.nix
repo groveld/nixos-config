@@ -3,30 +3,31 @@
   config = lib.mkIf config.modules.niri.enable {
 
     home.packages = with pkgs; [
+      niri
       waybar
       alacritty
       fuzzel
       mako
       swaylock
       swayidle
-      rofi-wayland
+      rofi
       rofi-network-manager
       rofi-bluetooth
     ];
 
-    fonts.packages = with pkgs; [
-      nerd-fonts.symbols-only
-      nerd-fonts.jetbrains-mono
-    ];
+    # fonts.packages = with pkgs; [
+    #   nerd-fonts.symbols-only
+    #   nerd-fonts.jetbrains-mono
+    # ];
 
-    programs = {
-      niri.enable = true;
-      waybar.enable = false;
-    };
+    # programs = {
+    #   niri.enable = true;
+    #   waybar.enable = false;
+    # };
 
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    # environment.sessionVariables = {
+    #   NIXOS_OZONE_WL = "1";
+    # };
 
   };
 }

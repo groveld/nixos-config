@@ -5,12 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +16,7 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    niri = {
+    niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
@@ -33,10 +27,9 @@
     self,
     nixpkgs,
     nixpkgs-stable,
-    nur,
     home-manager,
     stylix,
-    niri,
+    niri-flake,
     ...
   }@inputs:
   let
@@ -60,6 +53,7 @@
               extraSpecialArgs = { inherit inputs; };
               useUserPackages = true;
               useGlobalPkgs = true;
+              backupFileExtension = "backup";
             };
           }
         ];

@@ -1,16 +1,10 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ lib, config, pkgs, ... }: {
   options.modules.firefox.enable = lib.mkEnableOption "firefox";
   config = lib.mkIf config.modules.firefox.enable {
 
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
-
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        decentraleyes
-        ublock-origin
-        clearurls
-      ];
 
       profiles.default = {
         id = 0;
