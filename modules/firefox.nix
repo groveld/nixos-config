@@ -1,33 +1,36 @@
-{ lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   options.modules.firefox.enable = lib.mkEnableOption "firefox";
   config = lib.mkIf config.modules.firefox.enable {
 
-    environment.systemPackages = with pkgs; [
-      firefox
-    ];
-
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox;
 
-      wrapperConfig = {
-        MOZ_ENABLE_WAYLAND = "0";
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        decentraleyes
+        ublock-origin
+        clearurls
+      ];
+
+      profiles.default = {
+        id = 0;
+        name = "main";
+        isDefault = true;
+
+        settings = {
+          "browser.startup.homepage" = null;
+
+          # Disable telemetry
+          "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+          "browser.ping-centre.telemetry" = false;
+          "browser.tabs.crashReporting.sendReport" = false;
+          "devtools.onboarding.telemetry.logged" = false;
+          "toolkit.telemetry.enabled" = false;
+          "toolkit.telemetry.unified" = false;
+          "toolkit.telemetry.server" = "";
+        };
+
       };
-
-      preferences = {
-        "privacy.trackingprotection.enabled" = true;
-        "privacy.resistFingerprinting" = true;
-        "network.cookie.cookieBehavior" = 1;
-        "browser.tabs.warnOnClose" = false;
-        "browser.search.suggest.enabled" = false;
-        "browser.urlbar.trimURLs" = false;
-        "browser.cache.disk.enable" = false;
-      };
-
-      policies = {
-        "DisableTelemetry" = true;
-        "DisableAppUpdate" = true;
-      };
-
     };
   };
 }

@@ -2,24 +2,22 @@
   options.modules.niri.enable = lib.mkEnableOption "niri";
   config = lib.mkIf config.modules.niri.enable {
 
-    environment.systemPackages = with pkgs; [
-      swaylock
-      swayidle
+    home.packages = with pkgs; [
+      waybar
       alacritty
       fuzzel
       mako
+      swaylock
+      swayidle
       rofi-wayland
       rofi-network-manager
       rofi-bluetooth
-      waybar
     ];
 
-    fonts = {
-      packages = with pkgs; [
-        nerd-fonts.symbols-only
-        nerd-fonts.jetbrains-mono
-      ];
-    };
+    fonts.packages = with pkgs; [
+      nerd-fonts.symbols-only
+      nerd-fonts.jetbrains-mono
+    ];
 
     programs = {
       niri.enable = true;

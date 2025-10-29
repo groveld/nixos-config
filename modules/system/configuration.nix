@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, ... }: {
+{ inputs, config, pkgs, ... }: {
 
   services.xserver.desktopManager.xterm.enable = false;
 
@@ -7,20 +7,9 @@
     systemPackages = with pkgs; [ ];
   };
 
-  fonts = {
-    fonts = with pkgs; [
-      jetbrains-mono
-      roboto
-      openmoji-color
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
-    fontconfig = {
-      hinting.autohint = true;
-      defaultFonts = {
-        emoji = [ "OpenMoji Color" ];
-      };
-    };
-  };
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   nix = {
     settings = {
@@ -30,6 +19,7 @@
       keep-outputs = true;
       keep-derivations = true;
     };
+
     gc = {
       automatic = true;
       dates = "weekly";
@@ -38,7 +28,7 @@
   };
 
   boot = {
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
@@ -69,7 +59,7 @@
     keyMap = "us";
   };
 
-  users.users.${user} = {
+  users.users.martin = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };

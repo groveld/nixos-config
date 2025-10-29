@@ -2,27 +2,24 @@
   options.modules.git.enable = lib.mkEnableOption "git";
   config = lib.mkIf config.modules.git.enable {
 
-    environment.systemPackages = with pkgs; [
-      git
-    ];
-
     programs.git = {
       enable = true;
+      package = pkgs.git;
 
-      userName = "groveld";
-      userEmail = "3328493+groveld@users.noreply.github.com";
+      settings = {
+        user = {
+          name = "groveld";
+          email = "3328493+groveld@users.noreply.github.com";
+        };
 
-      aliases = {
-        st = "status";
-        co = "checkout";
-        ci = "commit";
-        br = "branch";
-        lg = "log --oneline --graph --all --decorate";
-      };
+        alias = {
+          lg = "log --oneline --graph --all --decorate";
+        };
 
-      extraConfig = {
-        init = { defaultBranch = "main"; };
-        color = { ui = "auto"; };
+        init.defaultBranch = "main";
+
+        color.ui = "auto";
+
         filter.lfs = {
           clean = "git-lfs clean -- %f";
           smudge = "git-lfs smudge -- %f";
