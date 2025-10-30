@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  ...
+}:
+{
   options.modules.audio.enable = lib.mkEnableOption "audio";
   config = lib.mkIf config.modules.audio.enable {
 

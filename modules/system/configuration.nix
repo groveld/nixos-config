@@ -1,4 +1,8 @@
-{ inputs, config, pkgs, ... }: {
+{
+  pkgs,
+  ...
+}:
+{
 
   imports = [
     ./audio.nix
@@ -21,10 +25,7 @@
 
   services.xserver.desktopManager.xterm.enable = false;
 
-  environment = {
-    defaultPackages = [ ];
-    systemPackages = with pkgs; [ ];
-  };
+  environment.defaultPackages = [ ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -33,7 +34,10 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       warn-dirty = false;
       keep-outputs = true;
       keep-derivations = true;

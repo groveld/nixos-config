@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   options.modules.git.enable = lib.mkEnableOption "git";
   config = lib.mkIf config.modules.git.enable {
 

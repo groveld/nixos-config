@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  ...
+}:
+{
   options.modules.xserver.enable = lib.mkEnableOption "xserver";
   config = lib.mkIf config.modules.xserver.enable {
 

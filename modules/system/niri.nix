@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   options.modules.niri.enable = lib.mkEnableOption "niri";
   config = lib.mkIf config.modules.niri.enable {
 

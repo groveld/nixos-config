@@ -28,49 +28,51 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    stylix,
-    firefox-addons,
-    ...
-  }@inputs:
-  let
-    # userName = "martin";
-    # stateVersion = "25.05";
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    lib = nixpkgs.lib;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      stylix,
+      firefox-addons,
+      ...
+    }@inputs:
+    let
+      # userName = "martin";
+      # stateVersion = "25.05";
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
 
-    overlays = inputs.niri-flake.overlays.niri;
+      overlays = inputs.niri-flake.overlays.niri;
 
-    mkSystem = pkgs: system: hostname:
-      pkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          { networking.hostName = hostname; }
-          ./hosts/${hostname}/hardware-configuration.nix
-          ./modules/system/configuration.nix
-          home-manager.nixosModules.home-manager
-          stylix.nixosModules.stylix
-          {
-            home-manager = {
-              users.martin = ./hosts/${hostname}/home.nix;
-              extraSpecialArgs = { inherit inputs; };
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              backupFileExtension = "backup";
-            };
-          }
-        ];
+      mkSystem =
+        pkgs: system: hostname:
+        pkgs.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            { networking.hostName = hostname; }
+            ./hosts/${hostname}/hardware-configuration.nix
+            ./modules/system/configuration.nix
+            home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
+            {
+              home-manager = {
+                users.martin = ./hosts/${hostname}/home.nix;
+                extraSpecialArgs = { inherit inputs; };
+                useUserPackages = true;
+                useGlobalPkgs = true;
+                backupFileExtension = "backup";
+              };
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        rosetta = mkSystem inputs.nixpkgs "x86_64-linux" "rosetta";
       };
-  in
-  {
-    nixosConfigurations = {
-      rosetta = mkSystem inputs.nixpkgs "x86_64-linux" "rosetta";
     };
-  };
 }

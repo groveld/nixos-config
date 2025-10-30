@@ -1,4 +1,11 @@
-{ inputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   options.modules.firefox.enable = lib.mkEnableOption "firefox";
   config = lib.mkIf config.modules.firefox.enable {
 
@@ -11,18 +18,16 @@
         name = "main";
         isDefault = true;
 
-        extensions.packages = let
-          firefox-ext = inputs.firefox-addons.packages.x86_64-linux;
-        in [
-          firefox-ext.ublock-origin
-          firefox-ext.darkreader
-          firefox-ext."10ten-ja-reader"
-          firefox-ext.proton-pass
-        ];
+        extensions.packages =
+          let
+            firefox-ext = inputs.firefox-addons.packages.x86_64-linux;
+          in
+          [
+            firefox-ext.ublock-origin
+          ];
 
         settings = {
           "browser.startup.homepage" = null;
-
           # Disable telemetry
           "browser.newtabpage.activity-stream.feeds.telemetry" = false;
           "browser.ping-centre.telemetry" = false;
