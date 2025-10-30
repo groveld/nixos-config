@@ -2,7 +2,7 @@
   options.modules.audio.enable = lib.mkEnableOption "audio";
   config = lib.mkIf config.modules.audio.enable {
 
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
 
     security.rtkit.enable = true;
 

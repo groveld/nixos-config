@@ -5,6 +5,7 @@
     ./bluetooth.nix
     ./greetd.nix
     ./niri.nix
+    ./stylix.nix
     ./xserver.nix
   ];
 

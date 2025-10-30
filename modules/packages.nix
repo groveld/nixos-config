@@ -7,10 +7,9 @@
       wget
       bat
       btop
-      zed
     ];
 
-    programs.zed.enable = true;
+    programs.zed-editor.enable = true;
 
   };
 }
