@@ -8,14 +8,7 @@
       xkb.variant = "";
     };
 
-    services.displayManager.gdm.enable = true;
+    services.displayManager.greetd.enable = true;
 
   };
 }
-
-
-
-
-
-
-

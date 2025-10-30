@@ -3,7 +3,6 @@
   config = lib.mkIf config.modules.niri.enable {
 
     environment.systemPackages = with pkgs; [
-      niri
       waybar
       alacritty
       fuzzel
