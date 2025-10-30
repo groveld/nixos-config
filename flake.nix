@@ -28,8 +28,7 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    stylix,
-    niri-flake,
+    stylix,,
     ...
   }@inputs:
   let
@@ -38,6 +37,8 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
+
+    overlays = inputs.niri-flake.overlays.niri;
 
     mkSystem = pkgs: system: hostname:
       pkgs.lib.nixosSystem {

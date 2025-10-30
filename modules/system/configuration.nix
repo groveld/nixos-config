@@ -5,6 +5,7 @@
     ./bluetooth.nix
     ./greetd.nix
     ./niri.nix
+    ./xserver.nix
   ];
 
   modules = {
@@ -12,7 +13,10 @@
     bluetooth.enable = true;
     greetd.enable = true;
     niri.enable = true;
+    xserver.enable = true;
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   services.xserver.desktopManager.xterm.enable = false;
 
@@ -68,10 +72,10 @@
     };
   };
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  # };
 
   users.users.martin = {
     isNormalUser = true;
