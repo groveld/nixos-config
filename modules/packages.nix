@@ -7,6 +7,7 @@
       wget
       bat
       btop
+      zed
     ];
 
   };
