@@ -9,7 +9,7 @@
 
     polarity = "dark";
 
-    stylix.cursor = {
+    cursor = {
       package = pkgs.catppuccin-cursors.frappeMauve;
       name = "catppuccin-frappe-mauve-cursors";
       size = 24;
