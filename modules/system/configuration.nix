@@ -1,9 +1,9 @@
 {
   pkgs,
+  settings,
   ...
 }:
 {
-
   imports = [
     ./audio.nix
     ./bluetooth.nix
@@ -77,18 +77,16 @@
     };
   };
 
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
-
-  users.users.martin = {
+  users.users.${settings.username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   networking.networkmanager.enable = true;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = settings.stateVersion;
 
 }

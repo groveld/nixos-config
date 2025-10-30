@@ -3,7 +3,6 @@
   ...
 }:
 {
-
   stylix = {
     enable = true;
 

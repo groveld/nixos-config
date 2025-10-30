@@ -1,5 +1,8 @@
-{ inputs, lib, config, pkgs, ... }: {
-
+{
+  settings,
+  ...
+}:
+{
   imports = [
     ../../modules/firefox.nix
     ../../modules/git.nix
@@ -13,9 +16,8 @@
   };
 
   home = {
-    username = "martin";
-    homeDirectory = "/home/martin";
-    stateVersion = "25.05";
+    username = settings.username;
+    homeDirectory = "/home/" + settings.username;
+    stateVersion = settings.stateVersion;
   };
-
 }

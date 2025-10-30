@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  settings,
   ...
 }:
 {
@@ -14,7 +15,7 @@
       settings = rec {
         initial_session = {
           command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd niri-session --greeting 'welcome back'";
-          user = "martin";
+          user = settings.username;
         };
         default_session = initial_session;
       };

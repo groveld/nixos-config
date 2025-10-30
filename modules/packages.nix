@@ -15,6 +15,7 @@
       btop
       nil
       nixd
+      discord
     ];
 
     programs.zed-editor = {

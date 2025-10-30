@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  settings,
   ...
 }:
 {
@@ -20,10 +21,11 @@
 
         extensions.packages =
           let
-            firefox-ext = inputs.firefox-addons.packages.x86_64-linux;
+            firefox-ext = inputs.firefox-addons.packages.${settings.system};
           in
           [
             firefox-ext.ublock-origin
+            # firefox-ext.onepassword-password-manager
           ];
 
         settings = {

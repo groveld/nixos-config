@@ -30,28 +30,25 @@
 
   outputs =
     {
-      self,
       nixpkgs,
-      nixpkgs-stable,
       home-manager,
       stylix,
-      firefox-addons,
       ...
     }@inputs:
     let
-      # userName = "martin";
-      # stateVersion = "25.05";
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      lib = nixpkgs.lib;
-
-      overlays = inputs.niri-flake.overlays.niri;
-
       mkSystem =
-        pkgs: system: hostname:
-        pkgs.lib.nixosSystem {
-          system = system;
-          specialArgs = { inherit inputs; };
+        system: hostname: username:
+        let
+          settings = {
+            inherit system;
+            inherit hostname;
+            inherit username;
+            stateVersion = "25.05";
+          };
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs settings; };
           modules = [
             { networking.hostName = hostname; }
             ./hosts/${hostname}/hardware-configuration.nix
@@ -60,8 +57,8 @@
             stylix.nixosModules.stylix
             {
               home-manager = {
-                users.martin = ./hosts/${hostname}/home.nix;
-                extraSpecialArgs = { inherit inputs; };
+                users.${username} = ./hosts/${hostname}/home.nix;
+                extraSpecialArgs = { inherit inputs settings; };
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 backupFileExtension = "backup";
@@ -72,7 +69,7 @@
     in
     {
       nixosConfigurations = {
-        rosetta = mkSystem inputs.nixpkgs "x86_64-linux" "rosetta";
+        rosetta = mkSystem "x86_64-linux" "rosetta" "martin";
       };
     };
 }
