@@ -28,7 +28,7 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    stylix,,
+    stylix,
     ...
   }@inputs:
   let

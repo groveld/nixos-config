@@ -19,10 +19,7 @@
       nerd-fonts.jetbrains-mono
     ];
 
-    programs = {
-      niri.enable = true;
-      waybar.enable = false;
-    };
+    programs.niri.enable = true;
 
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
