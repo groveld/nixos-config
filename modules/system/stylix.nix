@@ -22,5 +22,12 @@
       };
     };
 
+    opacity = {
+      applications = 0.9;
+      popups = 0.9;
+      terminal = 0.5;
+      desktop = 0.5;
+    };
+
   };
 }

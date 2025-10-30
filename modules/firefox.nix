@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   options.modules.firefox.enable = lib.mkEnableOption "firefox";
   config = lib.mkIf config.modules.firefox.enable {
 
@@ -10,6 +10,15 @@
         id = 0;
         name = "main";
         isDefault = true;
+
+        extensions = let
+          firefox-ext = inputs.firefox-addons.packages.x86_64-linux;
+        in [
+          firefox-ext.ublock-origin
+          firefox-ext.darkreader
+          firefox-ext."10ten-ja-reader"
+          firefox-ext.proton-pass
+        ];
 
         settings = {
           "browser.startup.homepage" = null;
