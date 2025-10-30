@@ -10,24 +10,9 @@
     polarity = "dark";
 
     fonts = {
-      serif = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font";
-      };
-
-      sansSerif = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font";
-      };
-
-      monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
-      };
-
       sizes = {
         desktop = 13;
-        applications = 15;
+        applications = 13;
       };
     };
 
