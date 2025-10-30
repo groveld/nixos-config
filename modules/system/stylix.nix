@@ -9,6 +9,12 @@
 
     polarity = "dark";
 
+    stylix.cursor = {
+      package = pkgs.catppuccin-cursors.frappeMauve;
+      name = "catppuccin-frappe-mauve-cursors";
+      size = 24;
+    };
+
     fonts = {
       sizes = {
         desktop = 13;
