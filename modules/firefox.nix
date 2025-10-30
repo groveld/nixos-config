@@ -11,7 +11,7 @@
         name = "main";
         isDefault = true;
 
-        extensions = let
+        extensions.packages = let
           firefox-ext = inputs.firefox-addons.packages.x86_64-linux;
         in [
           firefox-ext.ublock-origin
