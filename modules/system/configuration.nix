@@ -1,5 +1,19 @@
 { inputs, config, pkgs, ... }: {
 
+  imports = [
+    ./audio.nix
+    ./bluetooth.nix
+    ./greetd.nix
+    ./niri.nix
+  ];
+
+  modules = {
+    audio.enable = true;
+    bluetooth.enable = true;
+    greetd.enable = true;
+    niri.enable = true;
+  };
+
   services.xserver.desktopManager.xterm.enable = false;
 
   environment = {
