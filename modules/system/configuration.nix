@@ -10,7 +10,7 @@
     ./greetd.nix
     ./niri.nix
     ./stylix.nix
-    ./xserver.nix
+    # ./xserver.nix
   ];
 
   modules = {
@@ -34,6 +34,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
+      trusted-users = [ "root" settings.username ];
       experimental-features = [
         "nix-command"
         "flakes"
@@ -82,6 +83,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video"
+      "audio"
     ];
   };
 

@@ -18,6 +18,10 @@
       rofi
       rofi-network-manager
       rofi-bluetooth
+      yazi
+      nemo
+      ladybird
+      wl-clipboard
     ];
 
     fonts.packages = with pkgs; [

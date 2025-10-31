@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  settings,
   ...
 }:
 {
@@ -13,11 +12,11 @@
       enable = true;
       restart = false;
       settings = rec {
-        initial_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd niri-session --greeting 'welcome back'";
-          user = settings.username;
+        tuigreet_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd niri-session";
+          user = "greeter";
         };
-        default_session = initial_session;
+        default_session = tuigreet_session;
       };
     };
 
@@ -28,8 +27,7 @@
       Type = "idle";
       StandardInput = "tty";
       StandardOutput = "tty";
-      StandardError = "journal"; # Without this errors will spam on screen
-      # Without these bootlogs will spam on screen
+      StandardError = "journal";
       TTYReset = true;
       TTYVHangup = true;
       TTYVTDisallocate = true;
