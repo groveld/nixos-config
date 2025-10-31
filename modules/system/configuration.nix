@@ -18,7 +18,7 @@
     bluetooth.enable = true;
     greetd.enable = true;
     niri.enable = true;
-    xserver.enable = true;
+    # xserver.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
